@@ -13,6 +13,8 @@ function ViewModel (options) {
 ## Compiler Function
 
 ```
+hooks = ['created', 'ready', 'destroy']
+
 function Compiler (vm, options) {
     var compiler = this,
         key, i
