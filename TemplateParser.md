@@ -12,40 +12,6 @@ Possible values include:
 - Node object of type Template
 
 ```
-function templateParser (template) {
-    var templateNode
-
-    if (template instanceof window.DocumentFragment) {
-        // if template is already a document fragment, do nothing
-        return template
-    }
-
-    if (typeof template === 'string') {
-        if (template.charAt(0) === '#') {
-            templateNode = document.getElementById(template.slice(1))
-            if (!templateNode) return
-        } else {
-            return fragment(template)
-        }
-    } else if (template.nodeType) {
-        return fragment(template)
-    } else {
-        return
-    }
-
-    // if it's a template tag and the browser supports it,
-    // its content is already a document fragment object
-    if (templateNode.tagName === 'TEMPLATE' && templateNode.content) {
-        return templateNode.content
-    }
-
-    if (templateNode.tagName === 'SCRIPT') {
-        return fragment(templateNode.innerHTML)
-    }
-
-    return fragment(templateNode.outerHTML)
-}
-
 function fragment (templateString) {
     var TAG_RE = /<([\w:]+)/,
         frag = document.createDocumentFragment()
@@ -82,3 +48,4 @@ function fragment (templateString) {
     return frag
 }
 ```
+

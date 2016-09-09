@@ -27,7 +27,8 @@ function Compiler (vm, options) {
     options = compiler.options = options || {}
     // what processOptions does:
     // 1. convert component object to ViewModel constructor
-    // 2. 
+    // 2. parse template
+    // 3. check filters
     utils.processOptions(options)
 }
 ```
