@@ -3,22 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Vue Note</title>
-	<script src="main.js"></script>
+	<script src="emitter.js"></script>
+	<script src="vue.js"></script>
 </head>
 <body>
-	<div id="el">
-		<input type="text" v-model="message">
-		<p>{{ message }}</p>
-	</div>
+	<p id="parent">Hello</p>
+	<button id="child" v-on:click="greet">Fire a custom event named 'greet'</button>
 
-	<script type="text/javascript">
-		new Vue({
-			el: '#el',
-
-			data: {
-				message: 'hello'
-			}
-		})
-	</script>
+	<script src="main.js"></script>
 </body>
 </html>
