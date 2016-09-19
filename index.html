@@ -7,8 +7,15 @@
 	<script src="vue.js"></script>
 </head>
 <body>
-	<p id="parent">Hello</p>
-	<button id="child" v-on:click="greet">Fire a custom event named 'greet'</button>
+
+	<div id="parent"></div>
+	<p id="listener">Hello</p>
+	<button id="emitter" @click="greet">greet</button>
+
+	<div id="regtest">
+		<p>Hello, <span>World!</span></p>
+		<p>second</p>
+	</div>
 
 	<script src="main.js"></script>
 </body>

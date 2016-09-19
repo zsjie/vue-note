@@ -1,33 +1,34 @@
 var parent = new Vue({
-	el: '#parent',
+    el: '#parent',
 
-	data: {
-		message: 'hello, world'
-	},
-
-	events: {
-		greet: function (data) {
-			console.log(data)
-			console.log(this.message)
-		}
-	}
-})
-
-var child = new Vue({
-	el: '#child',
-
-	parent: parent,
-
-	methods: {
-		greet: function () {
-			console.log('clicked')
-			this.$dispatch('greet', { name: 'zsj' })
-		}
-	}
+    events: {
+        greet: function (data) {
+            console.log(data)
+        }
+    }
 })
 
 new Vue({
-	el: '#hell',
+    el: '#listener',
 
-	methods: {}
+    parent: parent,
+
+    events: {
+        greet: function (data) {
+            console.log(data)
+        }
+    }
+})
+
+new Vue({
+    el: '#emitter',
+
+    parent: parent,
+
+    methods: {
+        greet: function () {
+            console.log('click')
+            this.$dispatch('greet', { name: 'zsj' })
+        }
+    }
 })
