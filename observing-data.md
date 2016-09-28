@@ -11,13 +11,13 @@ function Compiler (options) {
   // set up observer
   compiler.setupObserver()
   
-  // create binding for computed propterties
+  // create binding for computed properties
   compiler.createBinding(computed)
   
   // create binding for methods
   compiler.createBinding(methods)
   
-  compiler.observeData()
+  compiler.observeData(data)
 }
 ```
 
@@ -44,7 +44,7 @@ CompilerProto.setupObserver = function () {
     .on('set', onSet)
     .on('mutate', onSet)
     
-  // regiester hooks...
+  // register hooks...
   
   function onGet (kek) {
     check(key)
