@@ -1,7 +1,7 @@
 function Vue (options) {
 	var vm = this,
 		el = document.querySelector(options.el)
-
+	/* global Emitter */
 	vm.observer = new Emitter(vm)
 
 	var parent = options.parent

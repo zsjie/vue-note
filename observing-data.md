@@ -46,7 +46,7 @@ CompilerProto.setupObserver = function () {
     
   // register hooks...
   
-  function onGet (kek) {
+  function onGet (key) {
     check(key)
     DepsParser.catcher.emit('get', bindings[key])
   }
@@ -90,3 +90,31 @@ function Binding(compiler, key, isExp, isFn) {
   this.root = !this.isExp && key.indexOf('.') === -1
 }
 ```
+
+在 `CompilerProto.createBinding` 内部，对于 `options.data` 属性中的 `key`，通过 `CompilerProto.defineDataProp` 来建立绑定关系。
+
+```javascript
+CompilerProto.createBinding = function (key, directive) {
+  bindings[key] = binding
+  //...
+  compiler.defineDataProp(key, binding)
+  //..
+}
+
+CompilerProto.defineDataProp = function (key, binding) {
+  // ...
+  
+  binding.value = data[key]
+  
+  def(compiler.vm, key, {
+    get: function () {
+      return compiler.data[key]
+    },
+    set: function (val) {
+      compiler.data[key] = val
+    }
+  })
+}
+```
+
+priority directives: v-if, v-repeat, v-view, v-component 
